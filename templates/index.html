@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static "js/jq.js" %}"></script>
+    <title>TEST MAIN PAGE</title>
+    <script>
+        function setimage() {
+            var input = $("#uploadimage");
+            var fd = new FormData;
+
+            fd.append('img', input.prop('files')[0]);
+            fd.append('token','64bfe900ec9d5ba0274d584e218419e4abbcd0020ae1576a1231d519f45006c8')
+
+            $.ajax({
+                url: '127.0.0.1:8000/upload/',
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    alert('Статус: '+data['status']+'\nОшибка: '+data['error']+'\nПуть: '+data['data']);
+                    $("#image").attr("src",data['data']);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<img src="" id="image">
+<input type="file" id="uploadimage" style="height: 25px;width: 50px;">
+<div onclick="setimage()" style="height: 10px;width: 50px;">отправить</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+*.sqlite3
+*/settings.py
+__pycache__
+media/*
+!media/default
+stats.py
+static/*
+
