@@ -8,7 +8,6 @@ from rest_framework.views import APIView
 import json
 
 
-
 class Stats(APIView):
     def post(self, request):
         response = {}
